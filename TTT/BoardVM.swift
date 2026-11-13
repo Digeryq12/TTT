@@ -24,29 +24,30 @@ import Foundation
         if !gameON {
             boardMatrix = Array(repeating: Array(repeating: 0, count: size), count: size)
             placements = 0
-            currentPlayer = 1
         }
     }
     
     func place(x: Int, y: Int) {
         if boardMatrix[x][y] == 0 && gameON {
             boardMatrix[x][y] = currentPlayer
+            placements += 1
+            
             if checkBoard() {
                 gameON = false
                 playerWins[currentPlayer]! += 1
                 return
             }
+            
+            if placements == size * size {
+                gameON = false
+                return
+            }
+            
             currentPlayer *= -1
         }
     }
     
     func checkBoard() -> Bool {
-        
-        placements += 1
-        
-        if placements == size * size {
-            return true
-        }
         
         var placementsInCRow = 0
         var placementsInCols = Array(repeating: 0, count: size)
