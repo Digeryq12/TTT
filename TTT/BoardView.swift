@@ -14,10 +14,14 @@ struct BoardView: View {
         
         NavigationStack {
             VStack(alignment: .leading) {
+                Text("X wins: \(vm.playerWins[1] ?? 0) | O wins: \(vm.playerWins[-1] ?? 0)")
+                    .font(.title2)
+                
                 Text("Current player: \(vm.currentPlayer == 1 ? "X" : "O")")
                     .font(.title2)
                 
                 VStack {
+                    // the two ForEach loops give warnings - future fix
                     ForEach(0..<vm.size) { row in
                         HStack {
                             ForEach(0..<vm.size) { col in
@@ -33,6 +37,8 @@ struct BoardView: View {
                                     Text(vm.boardMatrix[row][col] == 0 ? "" : (vm.boardMatrix[row][col] > 0 ? "X" : "O"))
                                         .foregroundStyle(.white)
                                         .font(.largeTitle)
+                                        .scaleEffect(1.2)
+                                        .bold()
                                 }
                                 .padding(5)
                             }
