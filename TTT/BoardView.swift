@@ -42,8 +42,8 @@ struct BoardView: View {
                 .padding(.vertical, 50)
                 
                 Button {
-                    vm.gameON.toggle()
                     vm.resetGame()
+                    vm.gameON.toggle()
                 } label: {
                     Label(vm.gameON ? "Stop" : "Start", systemImage: vm.gameON ? "stop.fill" : "play.fill")
                 }
